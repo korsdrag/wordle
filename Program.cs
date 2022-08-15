@@ -5,15 +5,16 @@ namespace WordlePuzzle
     internal class Program
     {
         public static List<string> wordList = new List<string>();
+
         static void Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            var answers = File.ReadAllLines(@"D:\Git\projects\WordlePuzzle\words\wordle-nyt-answers-alphabetical.txt").ToList();
-            var guesses = File.ReadAllLines(@"D:\Git\projects\WordlePuzzle\words\wordle-nyt-allowed-guesses.txt").ToList();
+            var answers = File.ReadAllLines(@"D:\Git\wordle\words\wordle-nyt-answers-alphabetical.txt").ToList();
+            var guesses = File.ReadAllLines(@"D:\Git\wordle\words\wordle-nyt-allowed-guesses.txt").ToList();
 
-            answers.AddRange(guesses);
             wordList.AddRange(answers);
+            wordList.AddRange(guesses);
 
             Console.WriteLine(wordList.Count + " raw words");
 
@@ -74,6 +75,8 @@ namespace WordlePuzzle
             TimeSpan ts = stopwatch.Elapsed;
             string elapsedTime = String.Format("[{0:00}:{1:00}:{2:00}]", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             Console.WriteLine($"Total elapsed time: {elapsedTime}");
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey(false);
         }
 
 
